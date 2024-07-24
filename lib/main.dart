@@ -20,6 +20,8 @@ class GanapatiWallpaperApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      
       title: 'Ganapati Wallpaper App',
       theme: ThemeData(
         primarySwatch: Colors.orange,
@@ -85,7 +87,6 @@ class WallpaperController extends GetxController {
 
   Future<List<String>> fetchImages(String query, int page) async {
     final String apiKey = api_key;
-    print("api key is: $apiKey");
     final response = await http.get(
       Uri.parse('https://api.pexels.com/v1/search?query=$query&per_page=$_pageSize&page=$page'),
       headers: {'Authorization': apiKey},
@@ -156,20 +157,19 @@ class WallpaperController extends GetxController {
 class WallpaperScreen extends StatelessWidget {
   final WallpaperController controller = Get.put(WallpaperController());
   final List<String> options = [
-    'Ganapati', 'Bal Ganesh', 'Lal Bag Cha Raja', 'Chintamani', 'Siddhivinayak', 'Mayureshwar',
-    'Moreshwar', 'Ganesha', 'Vinayaka', 'Ekadanta', 'Heramba', 'Gajanan', 'Lambodara', 'Sumukha',
-    'Vigneshwara', 'Dhoomravarna', 'Vakratunda', 'Krishna', 'Durga', 'Saraswati'
-  ];
+    'Ganapati', 'Chintamani','Ganesha', 'Vinayaka', 'chaturthi' ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ganapati Wallpapers', style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        title: Text('Ganapati Wallpapers 2024', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.orange,
       ),
       body: Column(
         children: [
+          
           Container(
             height: 50,
             margin: EdgeInsets.only(top: 10),
@@ -205,6 +205,7 @@ class WallpaperScreen extends StatelessWidget {
               },
             ),
           ),
+          SizedBox(height: 10,),
           Expanded(
             child: RefreshIndicator(
               onRefresh: () async {
@@ -276,6 +277,7 @@ class WallpaperScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return Container(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+          width: double.infinity,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
