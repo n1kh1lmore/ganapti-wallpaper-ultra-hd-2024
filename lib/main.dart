@@ -87,6 +87,10 @@ class WallpaperController extends GetxController {
 
   Future<List<String>> fetchImages(String query, int page) async {
     final String apiKey = api_key;
+<<<<<<< HEAD
+=======
+    // print("api key is: $apiKey");
+>>>>>>> 1fcdce1c9d33ad286b4c931f8ccc226966896b6e
     final response = await http.get(
       Uri.parse('https://api.pexels.com/v1/search?query=$query&per_page=$_pageSize&page=$page'),
       headers: {'Authorization': apiKey},
